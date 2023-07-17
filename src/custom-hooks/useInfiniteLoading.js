@@ -15,6 +15,7 @@ export default function useInfiniteLoading({ path }) {
       if (status === 422) {
         // could've added one more condition while checking 422 if i had sample error json for LIST_RECORDS_ITERATOR_NOT_AVAILABLE
         setData(null);
+        setNextRef(null);
         setPageNumber(1);
       } else toast.error("Some error occured.");
     };
@@ -41,7 +42,6 @@ export default function useInfiniteLoading({ path }) {
         setData((r) => [...(r || []), ...(records || [])]);
         setNextRef(offset ?? -1);
       } catch (error) {
-        console.log(error.message, "jj");
         toast.error("Some error occured.");
       }
 
