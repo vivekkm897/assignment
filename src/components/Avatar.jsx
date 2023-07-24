@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { createImageFromInitials } from "../utils/image-utils";
 
-export default function Avatar({ avatar, firstLetter = "-" }) {
+function Avatar({ avatar, firstLetter = "" }) {
   return (
     <img
       loading="lazy"
@@ -16,3 +17,5 @@ export default function Avatar({ avatar, firstLetter = "-" }) {
     />
   );
 }
+
+export default memo(Avatar);

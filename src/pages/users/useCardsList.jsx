@@ -74,7 +74,10 @@ export default function useCardsList({
     }
   }, [users, activites]);
 
-  const data = users?.map(({ fields: { Id } }) => ({ ...list[Id] }));
+  const data = users
+    ?.filter(({ fields: { Id } }) => list[Id]) // don't show cards until JSON file is completely loaded
+    ?.map(({ fields: { Id } }) => ({ ...list[Id] }));
+
   const cardsList = data
     ?.sort((a, b) => {
       if (sortby === "name") return a?.name?.localeCompare(b?.name);
